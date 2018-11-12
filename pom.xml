@@ -10,6 +10,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>_01springboothello</module>
+        <module>_02springbootservlet</module>
     </modules>
 
 

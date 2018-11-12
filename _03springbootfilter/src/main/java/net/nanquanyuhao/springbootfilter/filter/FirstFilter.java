@@ -21,10 +21,6 @@ import java.io.IOException;
 // @WebFilter(filterName = "FirstServlet", urlPatterns = {"*.do", "*.jsp"})
 @WebFilter(filterName = "FirstFilter", urlPatterns = "/first")
 public class FirstFilter implements Filter {
-    @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
-
-    }
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
@@ -33,8 +29,4 @@ public class FirstFilter implements Filter {
         System.out.println("离开 Filter");
     }
 
-    @Override
-    public void destroy() {
-
-    }
 }

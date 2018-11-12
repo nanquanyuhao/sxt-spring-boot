@@ -12,6 +12,9 @@
         <module>_01springboothello</module>
         <module>_02springbootservlet</module>
         <module>_03springbootfilter</module>
+        <module>_04springbootlistener</module>
+        <module>_05springbootstaticresources1</module>
+        <module>_06springbootstaticresources2</module>
     </modules>
 
 

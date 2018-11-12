@@ -1,4 +1,4 @@
-package net.nanquanyuhao.springboothello.servlet;
+package net.nanquanyuhao.springbootservlet.servlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

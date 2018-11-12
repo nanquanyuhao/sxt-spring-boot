@@ -1,14 +1,14 @@
-package net.nanquanyuhao.springboothello;
+package net.nanquanyuhao.springbootfilter;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 
 /**
- * SpringBoot 整合 Servlet 方式一
+ * SpringBoot 整合 Filter 方式一
  */
 @SpringBootApplication
-@ServletComponentScan // 在 SpringBoot 启动时会扫描 @WebServlet，并将该类初始化
+@ServletComponentScan
 public class Application {
 
 	public static void main(String[] args) {

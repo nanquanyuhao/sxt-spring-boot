@@ -1,4 +1,4 @@
-package net.nanquanyuhao.springboothello.controller;
+package net.nanquanyuhao.springbootservlet.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

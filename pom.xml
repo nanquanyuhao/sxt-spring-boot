@@ -11,6 +11,7 @@
     <modules>
         <module>_01springboothello</module>
         <module>_02springbootservlet</module>
+        <module>_03springbootfilter</module>
     </modules>
 
 

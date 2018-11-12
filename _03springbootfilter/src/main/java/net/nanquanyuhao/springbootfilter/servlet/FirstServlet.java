@@ -1,4 +1,4 @@
-package net.nanquanyuhao.springboothello.servlet;
+package net.nanquanyuhao.springbootfilter.servlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,7 +13,7 @@ import java.io.IOException;
  * SpringBoot 整合 Servlet 方式一
  * <servlet>
  *     <servlet-name>FirstServlet</servlet-name>
- *     <servlet-class>net.nanquanyuhao.springboothello.servlet.FirstServlet</servlet-class>
+ *     <servlet-class>net.nanquanyuhao.springbootservlet.servlet.FirstServlet</servlet-class>
  * </servlet>
  *
  * <servlet-mapping>

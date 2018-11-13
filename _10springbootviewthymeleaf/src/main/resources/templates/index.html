@@ -30,5 +30,16 @@
     <hr/>
     <span th:text="${#strings.toUpperCase(msg)}"></span>
     <span th:text="${#strings.toLowerCase(msg)}"></span>
+
+    <hr/>
+    <span th:text="${#dates.format(key)}"></span>
+    <hr/>
+    <span th:text="${#dates.format(key, 'yyyy/MM/dd')}"></span>
+    <hr/>
+    <span th:text="${#dates.year(key)}"></span>-
+    <hr/>
+    <span th:text="${#dates.month(key)}"></span>-
+    <hr/>
+    <span th:text="${#dates.day(key)}"></span>
 </body>
 </html>

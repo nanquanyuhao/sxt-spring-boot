@@ -17,6 +17,7 @@
         <module>_06springbootstaticresources2</module>
         <module>_07springbootfileupload</module>
         <module>_08springbootviewjsp</module>
+        <module>_09springbootviewfreemarker</module>
     </modules>
 
 

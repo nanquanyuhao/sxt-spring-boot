@@ -1,6 +1,6 @@
-package net.nanquanyuhao.springbootviewjsp.controller;
+package net.nanquanyuhao.springbootviewfreemarker.controller;
 
-import net.nanquanyuhao.springbootviewjsp.pojo.User;
+import net.nanquanyuhao.springbootviewfreemarker.pojo.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created by nanquanyuhao on 2018/11/13.
  * <p>
- * Spring Boot 整合 jsp
+ * Spring Boot 整合 freemarker
  */
 @Controller
 public class UserController {

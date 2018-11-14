@@ -4,8 +4,11 @@ import net.nanquanyuhao.springbootspringmvcmybatis.pojo.User;
 import net.nanquanyuhao.springbootspringmvcmybatis.service.UserServcice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 /**
  * Created by nanquanyuhao on 2018/11/14.
@@ -28,12 +31,23 @@ public class UserController {
     /**
      * 添加用户
      *
-     * @param users
+     * @param user
      * @return
      */
     @RequestMapping("/addUser")
-    public String addUser(User users) {
-        this.userService.addUser(users);
+    public String addUser(User user) {
+        this.userService.addUser(user);
         return "ok";
+    }
+
+    /**
+     * 查询全部用户
+     */
+    @RequestMapping("/findUserAll")
+    public String findUserAll(Model model){
+        List<User> list = this.userService.findUserAll();
+        model.addAttribute("list", list);
+
+        return "showUsers";
     }
 }

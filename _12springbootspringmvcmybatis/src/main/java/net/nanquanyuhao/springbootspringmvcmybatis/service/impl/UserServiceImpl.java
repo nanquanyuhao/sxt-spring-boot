@@ -28,4 +28,14 @@ public class UserServiceImpl implements UserServcice {
     public List<User> findUserAll() {
         return this.userMapper.selectUserAll();
     }
+
+    @Override
+    public User findUserById(Integer id) {
+        return this.userMapper.selectUserById(id);
+    }
+
+    @Override
+    public void updateUser(User user) {
+        this.userMapper.updateUser(user);
+    }
 }

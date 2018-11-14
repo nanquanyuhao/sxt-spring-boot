@@ -10,11 +10,15 @@
             <th>用户ID</th>
             <th>用户姓名</th>
             <th>用户年龄</th>
+            <th>操作</th>
         </tr>
         <tr th:each="user : ${list}">
             <td th:text="${user.id}"></td>
             <td th:text="${user.name}"></td>
             <td th:text="${user.age}"></td>
+            <td>
+                <a th:href="@{/user/findUserById(id=${user.id})}">更新用户</a>
+            </td>
         </tr>
     </table>
 </body>

@@ -12,4 +12,8 @@ public interface UserMapper {
     void insertUser(User user);
 
     List<User> selectUserAll();
+
+    User selectUserById(Integer id);
+
+    void updateUser(User user);
 }

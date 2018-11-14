@@ -12,4 +12,8 @@ public interface UserServcice {
     void addUser(User user);
 
     List<User> findUserAll();
+
+    User findUserById(Integer id);
+
+    void updateUser(User user);
 }

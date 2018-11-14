@@ -44,10 +44,30 @@ public class UserController {
      * 查询全部用户
      */
     @RequestMapping("/findUserAll")
-    public String findUserAll(Model model){
+    public String findUserAll(Model model) {
         List<User> list = this.userService.findUserAll();
         model.addAttribute("list", list);
 
         return "showUsers";
+    }
+
+    /**
+     * 根据用户id查询用户
+     */
+    @RequestMapping("/findUserById")
+    public String findUserById(Integer id, Model model) {
+        User user = this.userService.findUserById(id);
+        model.addAttribute("user", user);
+
+        return "updateUser";
+    }
+
+    /**
+     * 更新用户
+     */
+    @RequestMapping("/editUser")
+    public String editUser(User users){
+        this.userService.updateUser(users);
+        return "ok";
     }
 }

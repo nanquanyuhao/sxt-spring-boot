@@ -1,12 +1,11 @@
 package net.nanquanyuhao.springbootspringmvcmybatis;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-/**
- * Thymeleaf 入门案例
- */
 @SpringBootApplication
+@MapperScan("net.nanquanyuhao.springbootspringmvcmybatis.mapper") // @MapperScan 告知接口扫描时的位置，据接口生成代理对象
 public class Application {
 
 	public static void main(String[] args) {

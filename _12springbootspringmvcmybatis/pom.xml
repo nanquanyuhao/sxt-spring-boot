@@ -47,6 +47,7 @@
         </dependency>
 
         <!-- mysql 数据库驱动-->
+        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -67,6 +68,15 @@
     </dependencies>
 
     <build>
+        <!-- mapper.xml与mapper接口在一起的打包设置，如果 mapper.xml 放在 resources 目录下可以删除<resources>标签 -->
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

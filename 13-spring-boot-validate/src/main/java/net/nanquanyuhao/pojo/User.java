@@ -1,11 +1,16 @@
 package net.nanquanyuhao.pojo;
 
+import javax.validation.constraints.NotBlank;
+
 /**
  * Created by nanquanyuhao on 2018/11/14.
  */
 public class User {
 
+    @NotBlank(message = "用户名不能为空") // 非空校验
     private String name;
+
+    @NotBlank(message = "密码不能为空") // 密码非空校验
     private String password;
     private Integer age;
 
@@ -35,7 +40,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "Users [name=" + name + ", password=" + password + ", age="
+        return "User [name=" + name + ", password=" + password + ", age="
                 + age + "]";
     }
 

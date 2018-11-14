@@ -18,4 +18,8 @@
 	<update id="updateUser" parameterType="user">
 		update user set name=#{name}, age=#{age} where id=#{id}
 	</update>
+
+	<delete id="deleteUserById">
+		delete from user where id = #{value}
+	</delete>
 </mapper>

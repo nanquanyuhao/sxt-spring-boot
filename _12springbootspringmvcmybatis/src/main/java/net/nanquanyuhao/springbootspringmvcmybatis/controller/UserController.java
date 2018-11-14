@@ -70,4 +70,13 @@ public class UserController {
         this.userService.updateUser(users);
         return "ok";
     }
+
+    /**
+     * 删除用户
+     */
+    @RequestMapping("/delUser")
+    public String delUser(Integer id){
+        this.userService.deleteUserById(id);
+        return "redirect:/user/findUserAll";
+    }
 }

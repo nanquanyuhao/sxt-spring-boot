@@ -16,4 +16,6 @@ public interface UserServcice {
     User findUserById(Integer id);
 
     void updateUser(User user);
+
+    void deleteUserById(Integer id);
 }

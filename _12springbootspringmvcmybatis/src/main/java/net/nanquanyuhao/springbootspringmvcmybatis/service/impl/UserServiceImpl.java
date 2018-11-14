@@ -38,4 +38,9 @@ public class UserServiceImpl implements UserServcice {
     public void updateUser(User user) {
         this.userMapper.updateUser(user);
     }
+
+    @Override
+    public void deleteUserById(Integer id) {
+        this.userMapper.deleteUserById(id);
+    }
 }

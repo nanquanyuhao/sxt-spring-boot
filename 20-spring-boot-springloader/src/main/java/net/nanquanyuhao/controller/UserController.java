@@ -13,7 +13,7 @@ public class UserController {
 
     @RequestMapping("/show")
     public String showPage() {
-        System.out.println("ShowPage...");
+        System.out.println("ShowPage...init");
         return "index";
     }
 }

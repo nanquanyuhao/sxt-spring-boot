@@ -1,6 +1,7 @@
 package net.nanquanyuhao;
 
 import net.nanquanyuhao.dao.UserRepository;
+import net.nanquanyuhao.dao.UserRepositoryCrudRepository;
 import net.nanquanyuhao.dao.UserRepositoryQueryAnnotation;
 import net.nanquanyuhao.dao.UserRepositpryByName;
 import net.nanquanyuhao.pojo.User;
@@ -13,6 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * 测试类
@@ -29,6 +31,9 @@ public class ApplicationTests {
 
     @Autowired
     private UserRepositoryQueryAnnotation userRepositoryQueryAnnotation;
+
+    @Autowired
+    private UserRepositoryCrudRepository userRepositoryCrudRepository;
 
     @Test
     public void contextLoads() {
@@ -108,5 +113,60 @@ public class ApplicationTests {
     @Rollback(false) // 取消自动回滚
     public void testUpdateUserNameById() {
         this.userRepositoryQueryAnnotation.updateUserNameById("张三三", 1);
+    }
+
+    /**
+     * CrudRepository 测试
+     */
+    @Test
+    public void testCrudRepositorySave() {
+        User user = new User();
+        user.setName("张三丰");
+        user.setAge(32);
+        user.setAddress("天津");
+
+        this.userRepositoryCrudRepository.save(user);
+    }
+
+    /**
+     * CrudRepository 测试
+     */
+    @Test
+    public void testCrudRepositoryUpdate() {
+        User user = new User();
+        user.setId(4);
+        user.setName("张三丰");
+        user.setAge(40);
+        user.setAddress("南京");
+
+        this.userRepositoryCrudRepository.save(user);
+    }
+
+    /**
+     * CrudRepository 测试
+     */
+    @Test
+    public void testCrudRepositoryFindOne() {
+        Optional<User> optional = this.userRepositoryCrudRepository.findById(4);
+        System.out.println(optional.get());
+    }
+
+    /**
+     * CrudRepository 测试
+     */
+    @Test
+    public void testCrudRepositoryFindAll() {
+        List<User> list = (List<User>) this.userRepositoryCrudRepository.findAll();
+        for (User user : list) {
+            System.out.println(user);
+        }
+    }
+
+    /**
+     * CrudRepository 测试
+     */
+    @Test
+    public void testCrudRepositoryDeleteById() {
+        this.userRepositoryCrudRepository.deleteById(4);
     }
 }

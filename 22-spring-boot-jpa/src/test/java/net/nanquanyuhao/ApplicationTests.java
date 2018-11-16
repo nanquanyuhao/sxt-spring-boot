@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.test.annotation.Rollback;
@@ -207,8 +208,8 @@ public class ApplicationTests {
 
         // Pageable：封装了分页的参数，当前页，每页显示的条数。当前页从 0 开始。
         // PageRequest.of(page, size); page：当前页，size：每页显示的条数
-        PageRequest pageRequest = PageRequest.of(1, 2);
-        Page<User> page = this.userRepositoryPagingAndSorting.findAll(pageRequest);
+        Pageable pageable = PageRequest.of(1, 2);
+        Page<User> page = this.userRepositoryPagingAndSorting.findAll(pageable);
 
         System.out.println("总条数：" + page.getTotalElements());
         System.out.println("总页数：" + page.getTotalPages());
@@ -225,8 +226,8 @@ public class ApplicationTests {
     public void testPagingAndSortingRepositorySortAndPaging() {
 
         Sort sort = Sort.by(new Sort.Order(Sort.Direction.DESC, "id"));
-        PageRequest pageRequest = PageRequest.of(0, 2, sort);
-        Page<User> page = this.userRepositoryPagingAndSorting.findAll(pageRequest);
+        Pageable pageable = PageRequest.of(0, 2, sort);
+        Page<User> page = this.userRepositoryPagingAndSorting.findAll(pageable);
 
         System.out.println("总条数：" + page.getTotalElements());
         System.out.println("总页数：" + page.getTotalPages());

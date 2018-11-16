@@ -4,6 +4,7 @@ import net.nanquanyuhao.dao.UserRepository;
 import net.nanquanyuhao.pojo.User;
 import net.nanquanyuhao.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,6 +24,7 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Override
+    @Cacheable(value = "user")
     public List<User> findUserAll() {
         return this.userRepository.findAll();
     }
@@ -35,11 +37,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Cacheable(value = "user", key = "#pageable.pageSize")
     public Page<User> findUserByPage(Pageable pageable) {
         return this.userRepository.findAll(pageable);
     }
 
     @Override
+    // @CacheEvict(value = "user", allEntries = true)：清除缓存中以 user 缓存策略缓存的对象
+    @CacheEvict(value = "user", allEntries = true)
     public void saveUser(User user) {
         this.userRepository.save(user);
     }

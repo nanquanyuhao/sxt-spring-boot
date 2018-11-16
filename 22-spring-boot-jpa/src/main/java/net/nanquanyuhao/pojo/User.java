@@ -23,6 +23,11 @@ public class User {
     @Column(name = "address")
     private String address;
 
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    // @JoinColumn：维护外键
+    @JoinColumn(name = "role_id")
+    private Role role;
+
     public Integer getId() {
         return id;
     }
@@ -58,5 +63,13 @@ public class User {
     @Override
     public String toString() {
         return "Users [id=" + id + ", name=" + name + ", age=" + age + ", address=" + address + "]";
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }

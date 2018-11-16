@@ -1,14 +1,14 @@
 package net.nanquanyuhao;
 
-import net.nanquanyuhao.dao.UserRepository;
-import net.nanquanyuhao.dao.UserRepositoryCrudRepository;
-import net.nanquanyuhao.dao.UserRepositoryQueryAnnotation;
-import net.nanquanyuhao.dao.UserRepositpryByName;
+import net.nanquanyuhao.dao.*;
 import net.nanquanyuhao.pojo.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -34,6 +34,9 @@ public class ApplicationTests {
 
     @Autowired
     private UserRepositoryCrudRepository userRepositoryCrudRepository;
+
+    @Autowired
+    private UserRepositoryPagingAndSorting userRepositoryPagingAndSorting;
 
     @Test
     public void contextLoads() {
@@ -168,5 +171,76 @@ public class ApplicationTests {
     @Test
     public void testCrudRepositoryDeleteById() {
         this.userRepositoryCrudRepository.deleteById(4);
+    }
+
+    /**
+     * PagingAndSortingRepository 排序测试
+     */
+    @Test
+    public void testPagingAndSortingRepositorySort() {
+
+        // Order 定义了排序规则
+        Sort.Order order = new Sort.Order(Sort.Direction.DESC, "id");
+        // Sort 封装了排序规则
+        Sort sort = Sort.by(order);
+
+        List<User> list = (List<User>) this.userRepositoryPagingAndSorting.findAll(sort);
+        for (User user : list) {
+            System.out.println(user);
+        }
+    }
+
+    /**
+     * PagingAndSortingRepository 分页测试
+     */
+    @Test
+    public void testPagingAndSortingRepositoryPaging() {
+
+        // Pageable：封装了分页的参数，当前页，每页显示的条数。当前页从 0 开始。
+        // PageRequest.of(page, size); page：当前页，size：每页显示的条数
+        PageRequest pageRequest = PageRequest.of(1, 2);
+        Page<User> page = this.userRepositoryPagingAndSorting.findAll(pageRequest);
+
+        System.out.println("总条数：" + page.getTotalElements());
+        System.out.println("总页数：" + page.getTotalPages());
+        List<User> list = page.getContent();
+        for (User user : list) {
+            System.out.println(user);
+        }
+    }
+
+    /**
+     * PagingAndSortingRepository 排序 + 分页
+     */
+    @Test
+    public void testPagingAndSortingRepositorySortAndPaging() {
+
+        Sort sort = Sort.by(new Sort.Order(Sort.Direction.DESC, "id"));
+        PageRequest pageRequest = PageRequest.of(0, 2, sort);
+        Page<User> page = this.userRepositoryPagingAndSorting.findAll(pageRequest);
+
+        System.out.println("总条数：" + page.getTotalElements());
+        System.out.println("总页数：" + page.getTotalPages());
+        List<User> list = page.getContent();
+        for (User user : list) {
+            System.out.println(user);
+        }
+    }
+
+    /**
+     * JpaRepository 排序测试
+     */
+    @Test
+    public void testJpaRepositorySort() {
+
+        // Order 定义了排序规则
+        Sort.Order order = new Sort.Order(Sort.Direction.DESC, "id");
+        // Sort 封装了排序规则
+        Sort sort = Sort.by(order);
+
+        List<User> list = this.userRepository.findAll(sort);
+        for (User user : list) {
+            System.out.println(user);
+        }
     }
 }

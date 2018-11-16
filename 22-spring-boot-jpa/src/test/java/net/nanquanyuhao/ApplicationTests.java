@@ -9,10 +9,16 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,6 +43,9 @@ public class ApplicationTests {
 
     @Autowired
     private UserRepositoryPagingAndSorting userRepositoryPagingAndSorting;
+
+    @Autowired
+    private UserRepositorySpecification userRepositorySpecification;
 
     @Test
     public void contextLoads() {
@@ -239,6 +248,93 @@ public class ApplicationTests {
         Sort sort = Sort.by(order);
 
         List<User> list = this.userRepository.findAll(sort);
+        for (User user : list) {
+            System.out.println(user);
+        }
+    }
+
+    /**
+     * JpaSpecificationExecutor 单条件测试
+     */
+    @Test
+    public void testJpaSpecificationExecutor1() {
+
+        // Specification<User> 用于封装查询条件
+        Specification<User> spec = new Specification<User>() {
+
+            /**
+             *
+             * @param root 查询对象的属性的封装
+             * @param criteriaQuery 封装了我们要执行的查询中的各个部分的信息，select  from order by
+             * @param criteriaBuilder 查询条件的构造器。定义不同的查询条件
+             *
+             * @return Predicate 封装了单个查询条件
+             */
+            @Override
+            public Predicate toPredicate(Root<User> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
+                // where name = '张三三'
+                /**
+                 * 参数一：查询的条件属性
+                 * 参数二：条件的值
+                 */
+                Predicate pre = criteriaBuilder.equal(root.get("name"), "张三三");
+                return pre;
+            }
+        };
+
+        List<User> list = this.userRepositorySpecification.findAll(spec);
+        for (User user : list) {
+            System.out.println(user);
+        }
+    }
+
+    /**
+     * JpaSpecificationExecutor   多条件测试
+     */
+    @Test
+    public void testJpaSpecificationExecutor2() {
+
+        Specification<User> spec = new Specification<User>() {
+
+            @Override
+            public Predicate toPredicate(Root<User> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
+                // where name = '张三三' and age = 20
+                List<Predicate> list = new ArrayList<>();
+                list.add(criteriaBuilder.equal(root.get("name"), "张三三"));
+                list.add(criteriaBuilder.equal(root.get("age"), 20));
+
+                Predicate[] arr = new Predicate[list.size()];
+                return criteriaBuilder.and(list.toArray(arr));
+            }
+        };
+        List<User> list = this.userRepositorySpecification.findAll(spec);
+        for (User user : list) {
+            System.out.println(user);
+        }
+    }
+
+    /**
+     * JpaSpecificationExecutor   多条件测试第二种写法
+     */
+    @Test
+    public void testJpaSpecificationExecutor3() {
+
+        /**
+         * Specification<Users>:用于封装查询条件
+         */
+        Specification<User> spec = new Specification<User>() {
+
+            //Predicate:封装了 单个的查询条件
+            @Override
+            public Predicate toPredicate(Root<User> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
+
+                // (name = '张三' and age = 20) or id = 2
+                return criteriaBuilder.or(criteriaBuilder.and(criteriaBuilder.equal(root.get("name"), "张三三"), criteriaBuilder.equal(root.get("age"), 20)), criteriaBuilder.equal(root.get("id"), 2));
+            }
+        };
+
+        Sort sort = Sort.by(new Sort.Order(Sort.Direction.DESC, "id"));
+        List<User> list = this.userRepositorySpecification.findAll(spec, sort);
         for (User user : list) {
             System.out.println(user);
         }

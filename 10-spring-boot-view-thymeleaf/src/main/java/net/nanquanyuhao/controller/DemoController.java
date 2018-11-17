@@ -1,6 +1,6 @@
-package net.nanquanyuhao.springbootviewthymeleaf.controller;
+package net.nanquanyuhao.controller;
 
-import net.nanquanyuhao.springbootviewthymeleaf.pojo.User;
+import net.nanquanyuhao.pojo.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;

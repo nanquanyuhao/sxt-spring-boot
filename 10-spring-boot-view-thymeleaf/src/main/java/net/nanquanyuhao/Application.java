@@ -1,11 +1,8 @@
-package net.nanquanyuhao.springbootviewthymeleaf;
+package net.nanquanyuhao;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-/**
- * Thymeleaf 入门案例
- */
 @SpringBootApplication
 public class Application {
 

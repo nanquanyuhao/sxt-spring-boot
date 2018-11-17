@@ -18,7 +18,6 @@
         <module>_07springbootfileupload</module>
         <module>_08springbootviewjsp</module>
         <module>_09springbootviewfreemarker</module>
-        <module>_10springbootviewthymeleaf</module>
         <module>_11springbootviewthymeleafurl</module>
         <module>_12springbootspringmvcmybatis</module>
     </modules>

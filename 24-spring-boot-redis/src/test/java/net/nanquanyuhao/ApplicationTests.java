@@ -14,23 +14,23 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class ApplicationTests {
 
-    @Autowired
-    private RedisTemplate<String, Object> redisTemplate;
+	@Autowired
+	private RedisTemplate<String, Object> redisTemplate;
 
-    /**
-     * 添加一个字符串
-     */
-    @Test
-    public void contextLoads() {
-        this.redisTemplate.opsForValue().set("key", "北京尚学堂");
-    }
+	/**
+	 * 添加一个字符串
+	 */
+	@Test
+	public void contextLoads() {
+		this.redisTemplate.opsForValue().set("key", "北京尚学堂");
+	}
 
-    /**
-     * 获取一个字符串
-     */
-    @Test
-    public void test() {
-        String value = (String) this.redisTemplate.opsForValue().get("key");
-        System.out.println(value);
-    }
+	/**
+	 * 获取一个字符串
+	 */
+	@Test
+	public void testGet() {
+		String value = (String)this.redisTemplate.opsForValue().get("key");
+		System.out.println(value);
+	}
 }

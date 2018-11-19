@@ -1,7 +1,7 @@
-package net.nanquanyuhao.springbootspringmvcmybatis.controller;
+package net.nanquanyuhao.controller;
 
-import net.nanquanyuhao.springbootspringmvcmybatis.pojo.User;
-import net.nanquanyuhao.springbootspringmvcmybatis.service.UserServcice;
+import net.nanquanyuhao.pojo.User;
+import net.nanquanyuhao.service.UserServcice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -1,6 +1,6 @@
-package net.nanquanyuhao.springbootspringmvcmybatis.mapper;
+package net.nanquanyuhao.mapper;
 
-import net.nanquanyuhao.springbootspringmvcmybatis.pojo.User;
+import net.nanquanyuhao.pojo.User;
 
 import java.util.List;
 

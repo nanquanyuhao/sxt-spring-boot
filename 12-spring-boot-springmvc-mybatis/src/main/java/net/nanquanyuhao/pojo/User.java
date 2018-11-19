@@ -1,4 +1,4 @@
-package net.nanquanyuhao.springbootspringmvcmybatis.pojo;
+package net.nanquanyuhao.pojo;
 
 /**
  * Created by nanquanyuhao on 2018/11/14.

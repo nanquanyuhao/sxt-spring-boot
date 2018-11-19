@@ -1,8 +1,8 @@
-package net.nanquanyuhao.springbootspringmvcmybatis.service.impl;
+package net.nanquanyuhao.service.impl;
 
-import net.nanquanyuhao.springbootspringmvcmybatis.mapper.UserMapper;
-import net.nanquanyuhao.springbootspringmvcmybatis.pojo.User;
-import net.nanquanyuhao.springbootspringmvcmybatis.service.UserServcice;
+import net.nanquanyuhao.mapper.UserMapper;
+import net.nanquanyuhao.pojo.User;
+import net.nanquanyuhao.service.UserServcice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

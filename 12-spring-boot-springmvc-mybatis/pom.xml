@@ -68,7 +68,8 @@
     </dependencies>
 
     <build>
-        <!-- mapper.xml与mapper接口在一起的打包设置，如果 mapper.xml 放在 resources 目录下可以删除<resources>标签 -->
+        <!-- mapper.xml 与 mapper 接口在一起的打包设置，如果 mapper.xml 放在 resources 目录下可以删除<resources>标签 -->
+        <!-- 在 STS 中不需要加此配置，否则报各种异常 -->
         <resources>
             <resource>
                 <directory>src/main/java</directory>

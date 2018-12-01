@@ -23,15 +23,27 @@ public class RedisConfig {
     private RedisProperties redisProperties;
 
     /**
-     * 1.完成一些链接池配置
-     * 2.创建 JedisConnectionFactory：配置 redis 链接信息
+     * 1.完成 redis 连接基本配置
+     *
+     * @return
      */
     @Bean
-    public JedisConnectionFactory jedisConnectionFactory() {
+    public RedisStandaloneConfiguration redisStandaloneConfiguration() {
 
         RedisStandaloneConfiguration standaloneConfig = new RedisStandaloneConfiguration(redisProperties.getHost(), redisProperties.getPort());
         standaloneConfig.setDatabase(redisProperties.getDatabase());
         standaloneConfig.setPassword(redisProperties.getPassword());
+
+        return standaloneConfig;
+    }
+
+    /**
+     * 2.创建 JedisConnectionFactory：获取连接池配置 redis 连接池信息
+     *
+     * @return
+     */
+    @Bean
+    public JedisConnectionFactory jedisConnectionFactory(RedisStandaloneConfiguration standaloneConfig) {
 
         JedisConnectionFactory factory = new JedisConnectionFactory(standaloneConfig);
 
@@ -45,6 +57,8 @@ public class RedisConfig {
 
     /**
      * 3.创建RedisTemplate:用于执行Redis 操作的方法
+     *
+     * @return
      */
     @Bean
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory factory) {

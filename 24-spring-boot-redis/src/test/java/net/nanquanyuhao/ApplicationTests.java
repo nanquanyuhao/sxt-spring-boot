@@ -38,7 +38,7 @@ public class ApplicationTests {
     }
 
     /**
-     * 添加Users对象
+     * 添加 User 对象
      */
     @Test
     public void testSetUesr() {
@@ -46,24 +46,24 @@ public class ApplicationTests {
         user.setAge(20);
         user.setName("张三丰");
         user.setId(1);
-        //重新设置序列化器
+        // 重新设置序列化器
         this.redisTemplate.setValueSerializer(new JdkSerializationRedisSerializer());
         this.redisTemplate.opsForValue().set("user", user);
     }
 
     /**
-     * 取Users对象
+     * 取User对象
      */
     @Test
     public void testGetUser() {
-        //重新设置序列化器
+        // 重新设置序列化器
         this.redisTemplate.setValueSerializer(new JdkSerializationRedisSerializer());
         User user = (User) this.redisTemplate.opsForValue().get("user");
         System.out.println(user);
     }
 
     /**
-     * 基于JSON格式存Users对象
+     * 基于 JSON 格式存 User 对象
      */
     @Test
     public void testSetUserUseJSON() {
@@ -72,16 +72,16 @@ public class ApplicationTests {
         user.setName("李四丰");
         user.setId(1);
         this.redisTemplate.setValueSerializer(new Jackson2JsonRedisSerializer<>(User.class));
-        this.redisTemplate.opsForValue().set("users_json", user);
+        this.redisTemplate.opsForValue().set("user_json", user);
     }
 
     /**
-     * 基于JSON格式取Users对象
+     * 基于 JSON 格式取 User 对象
      */
     @Test
     public void testGetUseJSON() {
         this.redisTemplate.setValueSerializer(new Jackson2JsonRedisSerializer<>(User.class));
-        User user = (User) this.redisTemplate.opsForValue().get("users_json");
+        User user = (User) this.redisTemplate.opsForValue().get("user_json");
         System.out.println(user);
     }
 }

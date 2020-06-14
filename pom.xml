@@ -18,8 +18,24 @@
         <module>_07springbootfileupload</module>
         <module>_08springbootviewjsp</module>
         <module>_09springbootviewfreemarker</module>
+        <module>10-spring-boot-view-thymeleaf</module>
         <module>_11springbootviewthymeleafurl</module>
+        <module>12-spring-boot-springmvc-mybatis</module>
+        <module>13-spring-boot-validate</module>
+        <module>14-spring-boot-exception1</module>
+        <module>15-spring-boot-exception2</module>
+        <module>16-spring-boot-exception3</module>
+        <module>17-spring-boot-exception4</module>
+        <module>18-spring-boot-exception5</module>
+        <module>19-spring-boot-test</module>
+        <module>20-spring-boot-springloader</module>
+        <module>21-spring-boot-devtools</module>
+        <module>22-spring-boot-jpa</module>
+        <module>23-spring-boot-ehcache</module>
+        <module>24-spring-boot-redis</module>
+        <module>25-spring-boot-scheduled</module>
         <module>_26quartzdemo</module>
+        <module>27-spring-boot-quartz</module>
     </modules>
 
 

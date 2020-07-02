@@ -1,0 +1,7 @@
+paas:
+  file:
+    endpoint: 10.124.210.151
+    bucket-name: demo
+    access-key: JA4JYJP7EMHFXS1TRKEH
+    secret-key: p6mRTheDhSnFTDaGIBTGKCFbGsz8s10RUdH0PquN
+    presign-endpoint: 10.124.210.151

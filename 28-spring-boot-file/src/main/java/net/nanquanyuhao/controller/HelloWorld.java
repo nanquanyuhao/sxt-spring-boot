@@ -3,7 +3,7 @@ package net.nanquanyuhao.controller;
 import cn.chinaunicom.sdsi.paas.file.FileService;
 import cn.chinaunicom.sdsi.paas.file.exception.PaasException;
 import cn.chinaunicom.sdsi.paas.file.to.DownloadFileInfo;
-import org.apache.commons.io.IOUtils;
+import net.nanquanyuhao.util.ResponseUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
@@ -31,18 +33,18 @@ public class HelloWorld {
 
     @RequestMapping("/hello")
     @ResponseBody
-    public Map<String, Object> showHelloWorld(){
+    public Map<String, Object> showHelloWorld() {
         Map<String, Object> map = new HashMap<>();
         map.put("msg", "HelloWorld");
         return map;
     }
 
     @GetMapping("/file")
-    public ResponseEntity<byte[]> file(){
+    public ResponseEntity<byte[]> file(HttpServletRequest request) {
 
         DownloadFileInfo downloadFileInfo = null;
         try {
-            downloadFileInfo = fileService.download("70e68855-b637-44da-9e6b-96ec4c57591c");
+            downloadFileInfo = fileService.download("ef8d634d-1fb4-4d64-9d43-5e308b7c249c");
         } catch (PaasException e) {
             e.printStackTrace();
         } catch (UnsupportedEncodingException e) {
@@ -51,17 +53,25 @@ public class HelloWorld {
 
         String fileName = downloadFileInfo.getFileName();
         HttpHeaders headers = new HttpHeaders();
-        headers.setContentDispositionFormData("attachment", fileName);
+        headers.setContentDispositionFormData("attachment", ResponseUtils.responseFileName(fileName,
+                request.getHeader("USER-AGENT")));
+        // headers.add("Content-Disposition", "attachment;filename="+fileName);
         headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+        InputStream input = downloadFileInfo.getInput();
 
-        byte[] fileByteArray = null;
+
+        ByteArrayOutputStream swapStream = new ByteArrayOutputStream();
+        int ch;
         try {
-            fileByteArray =  IOUtils.toByteArray(downloadFileInfo.getInput());
+            while (true) {
+                if (!((ch = input.read()) != -1)) break;
+                swapStream.write(ch);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return new ResponseEntity<>(fileByteArray, headers, HttpStatus.OK);
+        return new ResponseEntity<>(swapStream.toByteArray(), headers, HttpStatus.OK);
     }
 
 }

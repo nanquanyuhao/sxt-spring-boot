@@ -44,7 +44,7 @@ public class HelloWorld {
 
         DownloadFileInfo downloadFileInfo = null;
         try {
-            downloadFileInfo = fileService.download("ef8d634d-1fb4-4d64-9d43-5e308b7c249c");
+            downloadFileInfo = fileService.download("2bc445f3-e470-4fab-afea-23da910e4589");
         } catch (PaasException e) {
             e.printStackTrace();
         } catch (UnsupportedEncodingException e) {
@@ -69,6 +69,14 @@ public class HelloWorld {
             }
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            if (input != null) {
+                try {
+                    input.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
 
         return new ResponseEntity<>(swapStream.toByteArray(), headers, HttpStatus.OK);

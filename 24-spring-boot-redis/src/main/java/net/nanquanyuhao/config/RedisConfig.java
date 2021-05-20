@@ -17,6 +17,7 @@ public class RedisConfig {
     /**
      * 使用 spring-boot-starter-data-redis 依赖已经具备初始化的 JedisConnectionFactory ，
      * 仅需要再创建 RedisTemplate 即可
+     * 20210520 实际 RedisTemplate 也会自动创建，可看需求进行内容变更
      *
      * @return
      */

@@ -18,7 +18,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class ApplicationTests {
 
     @Autowired
-    private RedisTemplate<String, Object> redisTemplate;
+    private RedisTemplate redisTemplate;
+    // private RedisTemplate<String, Object> redisTemplate;
 
     /**
      * 添加一个字符串

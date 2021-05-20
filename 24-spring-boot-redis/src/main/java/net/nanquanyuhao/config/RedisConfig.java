@@ -21,7 +21,7 @@ public class RedisConfig {
      *
      * @return
      */
-    @Bean
+    /*@Bean
     public RedisTemplate<String, Object> redisTemplate(JedisConnectionFactory factory) {
 
         RedisTemplate<String, Object> template = new RedisTemplate<>();
@@ -33,5 +33,5 @@ public class RedisConfig {
         template.setValueSerializer(new StringRedisSerializer());
 
         return template;
-    }
+    }*/
 }

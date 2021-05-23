@@ -47,7 +47,7 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		<!-- 高版本的 spring-boot-data-redis 默认使用 Lettuce， 通过配置替换回来 -->
+		<!-- 高版本的 spring-boot-data-redis 默认使用 Lettuce， 通过配置替换回来，不替换也正常可用 -->
 		<dependency>
 			<groupId>redis.clients</groupId>
 			<artifactId>jedis</artifactId>

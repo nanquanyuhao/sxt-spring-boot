@@ -37,20 +37,6 @@
             <version>2.6</version>
         </dependency>
 
-        <dependency>
-            <groupId>cn.chinaunicom.sdsi</groupId>
-            <artifactId>paas-java-sdk-file-spring-boot-starter</artifactId>
-            <version>1.0.1</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/lib/paas-java-sdk-file-spring-boot-starter-1.0.1.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>cn.chinaunicom.sdsi</groupId>
-            <artifactId>paas-java-sdk-file</artifactId>
-            <version>1.0.1</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/lib/paas-java-sdk-file-1.0.1.jar</systemPath>
-        </dependency>
         <!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-s3 -->
         <dependency>
             <groupId>com.amazonaws</groupId>
